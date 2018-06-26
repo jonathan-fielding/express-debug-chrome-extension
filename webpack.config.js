@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   entry: {
     loader: './src/scripts/loader.js',
-    app: './src/scripts/app.js',
+    panel: './src/scripts/panel.js',
     background: './src/scripts/background.js'
   },
   module: {
@@ -33,7 +33,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: 'src/manifest.json', to: path.resolve(__dirname, 'extension') },
-      { from: 'src/app.html', to: path.resolve(__dirname, 'extension') },
+      { from: 'src/panel.html', to: path.resolve(__dirname, 'extension') },
     ])
   ],
 };
