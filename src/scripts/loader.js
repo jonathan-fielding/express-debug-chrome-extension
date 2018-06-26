@@ -1,3 +1,5 @@
+// The intial JavaScript that loads the devtools panel
+
 chrome.devtools.panels.create("Express Debug",
     "MyPanelIcon.png",
     "panel.html",
