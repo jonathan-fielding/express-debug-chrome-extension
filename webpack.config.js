@@ -36,4 +36,8 @@ module.exports = {
       { from: 'src/panel.html', to: path.resolve(__dirname, 'extension') },
     ])
   ],
+  watchOptions: {
+    ignored: ['node_modules', 'extension']
+  },
+  watch: true
 };
