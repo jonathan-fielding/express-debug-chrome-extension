@@ -5,7 +5,7 @@ function AddSite() {
 
 class Settings extends React.Component {
     render() {
-        <div>
+        return <div>
             <h1>Settings</h1>
 
             <h2>Sites</h2>
