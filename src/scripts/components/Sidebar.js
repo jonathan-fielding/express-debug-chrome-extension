@@ -9,6 +9,7 @@ const Sidebar = () => (
       <ul>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/audit'>Audit</Link></li>
+        <li><Link to='/settings'>Settings</Link></li>
       </ul>
     </nav>
   </aside>
