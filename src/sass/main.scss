@@ -6,9 +6,13 @@
 
 @include foundation-xy-grid-classes;
 
+@include foundation-table;
+
 @import 'components/sidebar.component';
 
 .main {
-    padding: 10px 0;
+    padding: 10px 20px;
+    overflow: scroll;
+    height: 100vh;
 }
 
