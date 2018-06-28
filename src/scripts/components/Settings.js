@@ -6,9 +6,9 @@ function AddSite() {
 class Settings extends React.Component {
     render() {
         return <div>
-            <h1>Settings</h1>
+            <h1 class="h5">Settings</h1>
 
-            <h2>Sites</h2>
+            <h2 class="h6">Sites</h2>
             <p>For each website you want to be able to debug you need to configure a <strong>site authentication key</strong>.</p>
 
             <ul>

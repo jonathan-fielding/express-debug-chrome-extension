@@ -5,7 +5,7 @@ import Main from './Main'
 const App = () => (
   <div>
     <div className="grid-x grid-margin-x">
-      <Sidebar className="cell small-8" />
+      <Sidebar className="cell small-2" />
       <div className="main cell auto">
         <Main />
       </div>

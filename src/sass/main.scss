@@ -5,3 +5,10 @@
 @include foundation-typography;
 
 @include foundation-xy-grid-classes;
+
+@import 'components/sidebar.component';
+
+.main {
+    padding: 10px 0;
+}
+
