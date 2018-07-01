@@ -22,7 +22,7 @@ class Settings extends React.Component {
                 </li>
             </ul> */}
 
-            <table>
+            <table class="unstriped">
                 <thead>
                     <tr>
                         <th>Site</th>
@@ -34,12 +34,12 @@ class Settings extends React.Component {
                     <tr>
                         <td>http://www.jonathanfielding.com</td>
                         <td>snkdjnakjndkjndkjdasdjhsddshb</td>
-                        <td><button>edit</button> <button>remove</button></td>
+                        <td><button className="button tiny">edit</button> <button className="button tiny">remove</button></td>
                     </tr>
-                    <tr>
+                    <tr class="new-site-row">
                         <td><input name="site-url" placeholder="url" /></td>
                         <td><input name="site-key" placeholder="key" /></td>
-                        <td><button>save</button></td>
+                        <td><button className="button tiny">save</button></td>
                     </tr>
                 </tbody>
             </table>
