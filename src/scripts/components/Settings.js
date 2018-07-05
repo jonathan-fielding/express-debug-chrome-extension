@@ -1,48 +1,99 @@
 import React from 'react'
-
-function AddSite() {
-}
+import TableData from './TableData';
 
 class Settings extends React.Component {
-    render() {
-        return <div>
-            <h1 class="h5">Settings</h1>
+    prepareSettingsTable(rows) {
+        const data = [{
+            type: 'header',
+            cols: [
+                {
+                    type: 'heading',
+                    text: 'Site',
+                },
+                {
+                    type: 'heading',
+                    text: 'Access Key',
+                },
+                {
+                    type: 'heading',
+                    text: 'Edit',
+                },
+                {
+                    type: 'heading',
+                    text: 'Delete',
+                },
+            ]
+        }];
+    
+        rows.forEach(row => {
+            data.push({
+                type: 'row',
+                cols: [
+                    {
+                        type: 'text',
+                        text: row.site,
+                    },
+                    {
+                        type: 'text',
+                        text: row.key,
+                    },
+                    {
+                        type: 'action',
+                        text: 'Edit'
+                    },
+                    {
+                        type: 'action',
+                        text: 'Delete'
+                    }
+                ]
+            });
+        });
 
-            <h2 class="h6">Sites</h2>
+        data.push({
+            type: 'row',
+            className: 'new-site-row',
+            cols: [
+                {
+                    type: 'input',
+                    name: 'site-url',
+                    placeholder: 'url',
+                },
+                {
+                    type: 'input',
+                    name: 'site-key',
+                    placeholder: 'key',
+                },
+                {
+                    type: 'action',
+                    text: 'Save'
+                },
+                {
+                    type: 'action',
+                    text: 'Clear'
+                }
+            ]
+        });
+
+        return data;
+    }
+
+    render() {
+        const table = this.prepareSettingsTable([{
+            site: 'https://www.jonathanfielding.com',
+            key: 'snkdjnakjndkjndkjdasdjhsddshb'
+        },
+        {
+            site: 'https://www.engadget.com',
+            key: 'dakjhdkjadhkjdhajdlks'
+        }]);
+
+        return <div>
+            <h1 class='h5'>Settings</h1>
+
+            <h2 class='h6'>Sites</h2>
             <p>For each website you want to be able to debug you need to configure a <strong>site authentication key</strong>.</p>
 
-            {/* <ul>
-                <li>
-                    <fieldset>
-                        <label>URL:</label> <input name="site-url" />
-                    </fieldset>
-                    <fieldset>
-                        <label>Auth Key:</label> <input name="site-key" />
-                    </fieldset>
-                </li>
-            </ul> */}
-
-            <table class="unstriped">
-                <thead>
-                    <tr>
-                        <th>Site</th>
-                        <th>Key</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>http://www.jonathanfielding.com</td>
-                        <td>snkdjnakjndkjndkjdasdjhsddshb</td>
-                        <td><button className="button tiny">edit</button> <button className="button tiny">remove</button></td>
-                    </tr>
-                    <tr class="new-site-row">
-                        <td><input name="site-url" placeholder="url" /></td>
-                        <td><input name="site-key" placeholder="key" /></td>
-                        <td><button className="button tiny">save</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <TableData data={table}></TableData>
         </div>
     }
 }
