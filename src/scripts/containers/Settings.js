@@ -1,5 +1,5 @@
 import React from 'react'
-import TableData from './TableData';
+import TableData from '../components/TableData';
 
 class Settings extends React.Component {
     prepareSettingsTable(rows) {

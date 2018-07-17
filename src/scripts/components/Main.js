@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Home from './Home'
-import Audit from './Audit'
-import Settings from './Settings'
+import Home from '../containers/Home'
+import Audit from '../containers/Audit'
+import Settings from '../containers/Settings'
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
