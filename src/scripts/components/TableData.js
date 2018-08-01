@@ -20,7 +20,7 @@ class TableData extends React.Component {
                     case 'heading':
                         return <th>{col.text}</th>;
                     case 'action': 
-                        return <td><button className='button tiny'>{col.text}</button></td>;
+                        return <td><button className='button tiny' onClick={col.onClick}>{col.text}</button></td>;
                     case 'input': 
                         return <td><input name={col.name} placeholder={col.placeholder} /></td>;
                     default:

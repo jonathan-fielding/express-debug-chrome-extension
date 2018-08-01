@@ -1,7 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 import TableData from '../components/TableData';
+import NewSiteForm from '../components/NewSiteForm';
+import { deleteSite, addSite } from '../actions/site.actions';
+
+const mapStateToProps = state => ({
+    sites: state.sites
+});
 
 class Settings extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onClickAddSite = this.onClickAddSite.bind(this);
+    }
+
     prepareSettingsTable(rows) {
         const data = [{
             type: 'header',
@@ -31,7 +43,7 @@ class Settings extends React.Component {
                 cols: [
                     {
                         type: 'text',
-                        text: row.site,
+                        text: row.url,
                     },
                     {
                         type: 'text',
@@ -43,49 +55,26 @@ class Settings extends React.Component {
                     },
                     {
                         type: 'action',
-                        text: 'Delete'
+                        text: 'Delete',
+                        onClick: () => this.deleteSite(row.id),
                     }
                 ]
             });
         });
 
-        data.push({
-            type: 'row',
-            className: 'new-site-row',
-            cols: [
-                {
-                    type: 'input',
-                    name: 'site-url',
-                    placeholder: 'url',
-                },
-                {
-                    type: 'input',
-                    name: 'site-key',
-                    placeholder: 'key',
-                },
-                {
-                    type: 'action',
-                    text: 'Save'
-                },
-                {
-                    type: 'action',
-                    text: 'Clear'
-                }
-            ]
-        });
-
         return data;
     }
 
+    deleteSite(id) {
+        this.props.dispatch(deleteSite(id));
+    }
+
+    onClickAddSite(formSiteUrl, formAccessKey) {
+        this.props.dispatch(addSite(formSiteUrl, formAccessKey));
+    }
+
     render() {
-        const table = this.prepareSettingsTable([{
-            site: 'https://www.jonathanfielding.com',
-            key: 'snkdjnakjndkjndkjdasdjhsddshb'
-        },
-        {
-            site: 'https://www.engadget.com',
-            key: 'dakjhdkjadhkjdhajdlks'
-        }]);
+        const table = this.prepareSettingsTable(this.props.sites);
 
         return <div>
             <h1 class='h5'>Settings</h1>
@@ -94,8 +83,12 @@ class Settings extends React.Component {
             <p>For each website you want to be able to debug you need to configure a <strong>site authentication key</strong>.</p>
 
             <TableData data={table}></TableData>
+            <NewSiteForm addSite={this.onClickAddSite}></NewSiteForm>
+
         </div>
     }
 }
 
-export default Settings
+export default connect(
+    mapStateToProps
+)(Settings);

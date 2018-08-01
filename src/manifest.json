@@ -9,7 +9,8 @@
         "http://*/*",
         "https://*/*",
         "webRequest",
-        "webRequestBlocking"
+        "webRequestBlocking",
+        "storage"
     ],
     "browser_style": true,
     "background": {

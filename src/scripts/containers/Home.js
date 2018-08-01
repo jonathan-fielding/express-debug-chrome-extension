@@ -26,19 +26,25 @@ const theme = {
 };
 
 const mapStateToProps = state => ({
-  pageData: state.expressApplication.pageData
+  pageData: state.expressApplication.pageData,
+  supportedSite: state.expressApplication.supportedSite
 })
 
 class Home extends React.Component {
   render() {
-    console.log(this.props);
+    if (this.props.supportedSite) {
+      return <div>
+        <h1 class="h5">Homepage</h1>
+        {/* <p>No sites have been configured, please configure sites in <Link to='/settings'>Settings</Link></p> */}
+        
+        <h2 class="h6">Page data for localhost:3000</h2>
+        <JSONTree data={this.props.pageData} theme={theme} invertTheme={false} hideRoot={true} />
+      </div>
+    }
+
     return <div>
       <h1 class="h5">Homepage</h1>
-      {/* <p>No sites have been configured, please configure sites in <Link to='/settings'>Settings</Link></p> */}
-      
-      <h2 class="h6">Page data for localhost:3000</h2>
-      <JSONTree data={this.props.pageData} theme={theme} invertTheme={false} hideRoot={true} />
-
+      <p>This plugin has not been configured for this site, please configure sites in <Link to='/settings'>Settings</Link></p>
     </div>
   }
 }
