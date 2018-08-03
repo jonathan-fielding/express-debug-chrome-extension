@@ -27,7 +27,8 @@ const theme = {
 
 const mapStateToProps = state => ({
   pageData: state.expressApplication.pageData,
-  supportedSite: state.expressApplication.supportedSite
+  supportedSite: state.expressApplication.supportedSite,
+  performance: state.expressApplication._timings,
 })
 
 class Home extends React.Component {
@@ -39,6 +40,10 @@ class Home extends React.Component {
         
         <h2 class="h6">Page data for localhost:3000</h2>
         <JSONTree data={this.props.pageData} theme={theme} invertTheme={false} hideRoot={true} />
+
+        <h2 className="h6">Performance Metrics</h2>
+        <JSONTree data={this.props.performance} theme={theme} invertTheme={false} hideRoot={true} />
+
       </div>
     }
 

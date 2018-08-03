@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
         <nav>
           <ul>
             <li><Link to='/' className='sidebar__link' activeClassName="sidebar__link--active" onlyActiveOnIndex={true}>Home</Link></li>
-            <li><Link to='/audit' className='sidebar__link' activeClassName="sidebar__link--active">Audit</Link></li>
+            {/* <li><Link to='/audit' className='sidebar__link' activeClassName="sidebar__link--active">Audit</Link></li> */}
             <li><Link to='/settings' className='sidebar__link' activeClassName="sidebar__link--active">Settings</Link></li>
           </ul>
         </nav>

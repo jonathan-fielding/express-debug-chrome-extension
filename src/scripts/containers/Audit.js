@@ -39,6 +39,8 @@ class Audit extends React.Component {
         <Collapsible trigger="package.json">
           <JSONTree data={this.props.packageJson} theme={theme} invertTheme={false} hideRoot={true} />
         </Collapsible>
+
+        <button className='button'>Run Audits</button>
       </div>
     }
 
