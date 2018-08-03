@@ -3,8 +3,9 @@
 /* global chrome */
 /* eslint new-cap: ["error", { "capIsNewExceptionPattern": "^cryptoJS\.." }]*/
 
-const cryptoJS = require('crypto-js');
+const CryptoJS = require('crypto-js');
 const moment = require('./libraries/moment');
+import { store } from './stores/index';
 
 const ports = [];
 
@@ -65,21 +66,30 @@ function updatedTab() {
 
 function addDebugHeaders(evt) {
     const datetime = moment().tz('Europe/London').floor(15, 'minutes').format('YYYY-MM-DD HH:mm');
-    const currentKey = cryptoJS.HmacSHA1(datetime, 'rBiycQDurzDmaLaKGrPCxwYFfgmxnuadPhddidvg2XAvhCUiZHProzPqpVYwsZbD').toString();
+    const pluginState = store.getState();
+    const supportedSites = pluginState.sites;
 
-    console.log('addDebugHeaders');
+    const tabUrl = evt.initiator;
+    const theSite = supportedSites.filter(site => site.url === tabUrl);
 
-    // 'X-RequestId' is named as such to obscure it's real purpose, as it bypasses the cache
-    const headers = [].concat(evt.requestHeaders, {
-        name: 'X-RequestId',
-        value: currentKey,
-    });
+    console.log(theSite);
+    
+    if (theSite.length) {
+        const secretKey = theSite[0].key;
+        const debugKey = new CryptoJS.HmacSHA1(datetime, secretKey).toString();
 
-    return {
-        requestHeaders: headers,
-    };
+        // 'X-RequestId' is named as such to obscure it's real purpose, as it bypasses the cache
+        const headers = [].concat(evt.requestHeaders, {
+            name: 'X-RequestId',
+            value: debugKey,
+        });
+
+        console.log(headers);
+
+        return {
+            requestHeaders: headers,
+        };
+    }
+
+    return {};
 }
-
-chrome.storage.sync.set({key: 'test'}, function(value) {
-    console.log('Value is set to ' + value);
-});

@@ -17,7 +17,7 @@ render((
 ), document.getElementById('root'));
 
 window.messageListener = function messageListener(message) {
-  console.log(message);
+  
   chrome.devtools.inspectedWindow.eval('window.__expressDebugData', function (value) {
     // Once we get the data pass it into the store.
     if (typeof value !== "undefined") {

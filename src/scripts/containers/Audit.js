@@ -26,18 +26,25 @@ const theme = {
 };
 
 const mapStateToProps = state => ({
-  packageJson: state.expressApplication._packageJson
+  supportedSite: state.expressApplication.supportedSite,
+  packageJson: state.expressApplication._packageJson,
 })
 
 class Audit extends React.Component {
   render() {
-    console.log(this.props);
+    if (this.props.supportedSite) {
+      return <div>
+        <h1 class="h5">Application Audit</h1>
+        {/* <p>No sites have been configured, please configure sites in <Link to='/settings'>Settings</Link></p> */}
+        <Collapsible trigger="package.json">
+          <JSONTree data={this.props.packageJson} theme={theme} invertTheme={false} hideRoot={true} />
+        </Collapsible>
+      </div>
+    }
+
     return <div>
       <h1 class="h5">Application Audit</h1>
-      {/* <p>No sites have been configured, please configure sites in <Link to='/settings'>Settings</Link></p> */}
-      <Collapsible trigger="package.json">
-        <JSONTree data={this.props.packageJson} theme={theme} invertTheme={false} hideRoot={true} />
-      </Collapsible>
+      <p>This plugin has not been configured for this site, please configure sites in <Link to='/settings'>Settings</Link></p>
     </div>
   }
 }
